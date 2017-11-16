@@ -1,0 +1,181 @@
+@@ -0,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<title>Web Visualization</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="tree.css">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="script/script1.js"></script>
+<style>
+    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {font-size:16px;}
+    .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+    .w3-half img:hover{opacity:1}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>Data<br>Analytics</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
+    <a href="#a" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Line Plot</a> 
+    <a href="#b" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Time Series Plot</a> 
+    <a href="#c" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Box Plot</a> 
+    <a href="#d" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Map</a> 
+    <a href="#e" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Multiple Plots</a>
+    <a href="#h" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Table</a>
+    <a href="#i" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">API Call</a>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Company Name</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="header">
+    <h1 class="w3-jumbo"><b>Visualization</b></h1>
+    <p>This is a simple web app that I am playing with because I am bored. It is a single page 
+       app with endless scrolling because I don't know how to create multiple pages at the moment.
+       The app utilizes 'Plotly' to generate various types of plots from local or online data. For now,
+       it doesn't take in any inputs nor has it been integrated with any Python scripts on the back-end.
+    </p>
+  </div>
+
+  <!-- Plot A -->
+  <div class="w3-container" id="a" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Line Plot.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>This is a simple line plot created with Plotly. The data is hardcoded in the javascript file, because I am a noob at the moment. 
+       Mouse over the figure below and notice how Plotly's built-in toolbar lets you interact with the graph. C'est cool!</p>
+    <div id="plota" style="width:85%;height:450px;"></div>
+  </div>
+  
+  <!-- Plot B -->
+  <div class="w3-container" id="b" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Time Series Plot.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>This is a time-series plot generated with Plotly too. It comes with a range slider on the horizontal
+       axis for added interactivity. Super cool! This time round, the data is fed from an online source (Github), 
+       in csv format.
+    </p>
+    <div id="plotb" style="width:85%;height:500px;"></div>
+  </div>
+
+  <!-- Plot C -->
+  <div class="w3-container" id="c" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Box Plot.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>The famous box plot, of course, with the actual data points plotted next to it. I'm not sure if violin plots can be generated too.
+    </p>
+    <div id="plotc" style="width:85%;height:450px;"></div>
+  </div>
+
+  <!-- Plot D -->
+  <div class="w3-container" id="d" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Map.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Plotly plots maps too, without too much of a hassle.</p>
+    <div id="plotd" style="width:85%;height:450px;"></div>
+  </div>
+
+  <!-- Plot E -->
+  <div class="w3-container" id="e" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Multiple Plots.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Various other plots can be generated with Plotly. Here I am showing a few other examples
+       in a multiple frame format. This could be useful for creating a dashboard kinda app.</p>
+  </div>
+
+  <!-- Multiple Plots -->
+  <div class="w3-row-padding w3-grayscale">
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-container" style="margin-top:55px">
+          <div id="plote" style="width:130%;height:280px;"></div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-container" style="margin-top:55px">
+          <div id="plotf" style="width:130%;height:280px;"></div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-container" style="margin-top:55px">
+          <div id="plotg" style="width:130%;height:280px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="w3-container" id="h" style="margin-top:110px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Table.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Apart from plotting, Plotly also allows you to present a table as an image. If the data is
+      too long, a scroll bar is automatically added to the table, like in this case. You can take a snapshot 
+      of the table using the built-in toolbar. Here, I've added in a snippet of code to allow users to 
+      export the entire dataset into a csv file if they wish! Voila!
+    </p>
+    <div id="tablea" style="width:95%;height:370px;margin-bottom:10px"></div>
+    <button onclick="download_csv()">Download CSV</button> 
+  </div>
+
+  <!-- API -->
+  <div class="w3-container" id="i" style="margin-top:110px; margin-bottom:110px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>API Call.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Thus far, I have plotted csv datasets that are either located locally or remotely. 
+      What's more useful is the ability to retrieve data by making a call to an API. Here 
+      I've developed a function that calls a random API. Click the button below to view the 'json' output 
+      obtained from the call. This ouput can easily be fed into any of the above functions to generate 
+      any of the plots we have seen so far.
+    </p><br>
+    <button onclick="api_test()">Call API</button>
+    <div id="outputText" style="margin-top:50px"></div> 
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px">
+  <p class="w3-right">Created by Sari Shafidah. </p></div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
+</body>
+</html>
